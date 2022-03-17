@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -27,15 +28,17 @@ public class Program {
 			Account account = new Account(number, holder, balance, withdrawLimit);
 			
 			System.out.println();
-			System.out.println("Enter amount for withdraw: ");
+			System.out.print("Enter amount for withdraw: ");
 			double amount = sc.nextDouble();
-			account.withdraw(amount);			
+			account.withdraw(amount);
+			System.out.println("New balance: " + account.getBalance());
 		}
 		catch(DomainException e) {
 			System.out.println("Withdraw error: " + e.getMessage());
 		}
-		
-		
+		catch(InputMismatchException e) {
+			System.out.println("Input error");
+		}
 		
 		sc.close();
 
